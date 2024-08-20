@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ object.title }}</h1>
+  <h2>{{ object.subtitle }}</h2>
+  <p>{{ object.body }}</p>
+  <p>Author: {{ object.author }}</p>
+  <p>Status: {{ object.status.name }}</p>
+  <p>Created on: {{ object.created_on }}</p>
+  <a href="{% url 'edit' object.pk %}">Edit</a> | 
+  <a href="{% url 'delete' object.pk %}">Delete</a> | 
+  <a href="{% url 'list' %}">Back to List</a>
+
+  {% if user.is_authenticated %}
+  {% if user == post.auther %}
+  <a class="btn btn-danger" href="{% url 'delete' post.id %}">Delete</a>
+  {% endif %}
+  {% endif %}
+
+
+
+
+{% endblock %}
