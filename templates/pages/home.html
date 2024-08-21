@@ -17,10 +17,10 @@
                         <li class="list-group-item"><a href="#">The Future of Augmented Reality</a></li>
                         <li class="list-group-item"><a href="#">How Energy and Vibrations Affect Our Daily Lives</a></li>
                         {% if user.is_authenticated %}
-                          <li class="list-group-item"><a href="/">Learn How to Play Guitar (Subscription Required)</a></li>
+                          <li class="list-group-item"><a href="/">Learn How to Play Guitar </a></li>
                         {% else %}
                           <li class="list-group-item"><a href="#">Personal Growth: Lessons from Everyday Experiences</a></li>
-                          <li class="list-group-item"><a href="{% url 'login' %}">Learn How to Play Guitar (Login Required)</a></li>
+                          <li class="list-group-item"><a href="{% url 'login' %}">Learn How to Play Guitar (Subscription Required)</a></li>
                         {% endif %}
                       </ul>
                     
