@@ -12,13 +12,17 @@
                     <p class="lead mt-4">Welcome to my blog where I share insights, stories, and updates on various topics that interest me. From technology and personal growth to fascinating facts and interesting anecdotes, this is a space for exploration and engagement.</p>
                     
                     <h3 class="mt-4">Latest Posts</h3>
-                    <p>Check out some of my latest posts:</p>
+                    <p>Check out some of my free latest posts:</p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><a href="#">The Future of Augmented Reality</a></li>
                         <li class="list-group-item"><a href="#">How Energy and Vibrations Affect Our Daily Lives</a></li>
-                        <li class="list-group-item"><a href="#">The Journey of Learning New Skills</a></li>
-                        <li class="list-group-item"><a href="#">Personal Growth: Lessons from Everyday Experiences</a></li>
-                    </ul>
+                        {% if user.is_authenticated %}
+                          <li class="list-group-item"><a href="/">Learn How to Play Guitar (Subscription Required)</a></li>
+                        {% else %}
+                          <li class="list-group-item"><a href="#">Personal Growth: Lessons from Everyday Experiences</a></li>
+                          <li class="list-group-item"><a href="{% url 'login' %}">Learn How to Play Guitar (Login Required)</a></li>
+                        {% endif %}
+                      </ul>
                     
                     <h3 class="mt-4">About This Blog</h3>
                     <p>This blog is a collection of my thoughts and experiences. It covers a wide range of topics, including technology, personal development, and interesting facts about the world around us. My aim is to provide engaging content that sparks curiosity and inspires readers.</p>
