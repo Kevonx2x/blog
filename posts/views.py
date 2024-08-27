@@ -58,14 +58,22 @@ class DraftPostListView(LoginRequiredMixin, ListView):
         )
         return context
 
-        
-
-
-
-
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     template_name = "posts/detail.html"
     model = Post
+
+    def test_func(self):
+        post = self.get_object()
+        user = self.request.user
+
+        if post.status.name == 'published':
+            return True  
+        elif post.status.name == 'archived':
+            return user.is_authenticated 
+        elif post.status.name == 'draft':
+            return user.is_authenticated and post.author == user  
+        return False  
+
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -99,6 +107,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return post.author == self.request.user 
+    
+class PostUpdateToDraftView(UpdateView):
+    template_name = "posts/update_status.html"  
+    model = Post
+    fields = ["status"]
 
 
 
